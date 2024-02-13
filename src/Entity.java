@@ -17,8 +17,10 @@ class Character extends Entity{
     int[] abilities = {5,5,5,5,5,5};
     int freeAbilityPoints = 0;
     boolean isAlive = true;
+    int armorRating;
+    Inventory inventory = new Inventory();
 
-    tool currentTool;
+    Tool currentTool;
     // Constructors  ===========================================================
 
     Character(String name, int level, boolean def){
@@ -78,11 +80,19 @@ class Character extends Entity{
         int requiredXp = xpRequirements[level];
 //        System.out.println("DEBUG requiredXp:" + requiredXp);
         if (currentExp >= requiredXp){
-            System.out.println("You leveled up!");
             currentExp -= requiredXp;
-            level += 1;
+            levelUp();
             addAbilityPoints(1,abilityModifier);
         }
+    }
+    //======================================================
+    void levelUp(){
+        int requiredXp = xpRequirements[level];
+        System.out.println(entityName + " has leveled up!");
+        level += 1;
+        maxHP += 2;
+        currentHP = maxHP;
+        currentExp -= requiredXp;
     }
     //======================================================
     void addAbilityPoints(int number, int modifier){
@@ -203,17 +213,23 @@ class Character extends Entity{
             System.out.println(entityName +" is no longer alive and can not be healed.");
         }
     }
+    void openInventory(){
+        inventory.showInventory();
+    }
+    void addItem(Item item){
+        inventory.addItem(item);
+    }
+    void removeItem(Item item){
+        inventory.removeItem(item);
+    }
 }
 class Player extends Character{
-    Inventory inventory = new Inventory();
 
     Player(String name, int level) {
         // Call the superclass constructor with the provided arguments
         super(name, level, false);
         freeAbilityPoints = level * abilityModifier;
-    }
-
-        void openInventory(){
-    inventory.showInventory();
+        maxHP += 2*level;
+        currentHP = maxHP;
     }
 }
