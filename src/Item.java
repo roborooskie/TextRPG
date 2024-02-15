@@ -5,18 +5,9 @@ public class Item {
     double durability = 0.1;
     String name = "TestItem";
     String desc = "Just a regular item";
-    EquipsTo equipSlot;
+    EquipsTo equipSlot = EquipsTo.NONE;
 }
-enum EquipsTo {
-    HEAD,
-    BODY,
-    LEFT_HAND,
-    RIGHT_HAND,
-    FEET,
-    EARRINGS,
-    RING,
-    NONE
-}
+
 class Tool extends Item {
     boolean isTwoHanded;
     int damage;
@@ -80,7 +71,4 @@ class Tool extends Item {
     }
     // Methods ================================================================
 }
-    class equipment extends Item{
-    int armorScore;
-    }
 

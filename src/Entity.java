@@ -204,7 +204,7 @@ class Character extends Entity{
     }
 
     void gainHealth(int amount){
-        if (isAlive == true){
+        if (isAlive){
             System.out.println(entityName + " has healed some hit points!");
             currentHP += amount;
             if (currentHP > maxHP){
@@ -225,6 +225,7 @@ class Character extends Entity{
     }
 }
 class Player extends Character{
+    EquipmentSlots equippedItems = new EquipmentSlots();
 
     Player(String name, int level) {
         // Call the superclass constructor with the provided arguments
@@ -234,5 +235,12 @@ class Player extends Character{
         currentHP = maxHP;
     }
     void equipItem(Item item) {
+        equippedItems.equipItem(item,inventory);
+    }
+    void unEquipItem(EquipsTo slot){
+        equippedItems.unEquipItem(slot,inventory);
+    }
+    public void displayEquippedItems() {
+        equippedItems.displayEquippedItems();
     }
 }
