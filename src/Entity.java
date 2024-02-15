@@ -9,6 +9,7 @@ abstract public class Entity {
     int distanceToPlayer;
     int abilityModifier = 1;
 }
+
 // Character Class ===========================================================
 class Character extends Entity{
     final int[] xpRequirements = {0, 180, 360, 540, 720, 900, 1080, 1260, 1440, 1620, 1800, 1980, 2160, 2340, 2520, 2700};
@@ -231,5 +232,7 @@ class Player extends Character{
         freeAbilityPoints = level * abilityModifier;
         maxHP += 2*level;
         currentHP = maxHP;
+    }
+    void equipItem(Item item) {
     }
 }

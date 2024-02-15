@@ -4,6 +4,7 @@ public class Main {
         System.out.println(player.currentExp);
 
         Tool stok = new Tool("Stok","Kan je mee slaan", 50,1.5,100,2);
+        stok.equipSlot = EquipsTo.LEFT_HAND;
         Item cube = new Item();
 
         player.addItem(stok);
@@ -13,5 +14,7 @@ public class Main {
         player.openInventory();
         player.addItem(stok);
         player.openInventory();
+        player.equipItem(stok);
+        Equipment equippedItems = new Equipment();
     }
 }
