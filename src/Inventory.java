@@ -47,6 +47,17 @@ public class Inventory {
         // If no empty slot is found
         System.out.println("Inventory is full. Cannot add " + itemToAdd.name + ".");
     }
+    void addItem(Item itemToAdd,boolean isReturned){
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] == null) {
+                // Add the item to the empty slot
+                inventory[i] = itemToAdd;
+                return; // Exit the method after adding the item
+            }
+        }
+        // If no empty slot is found
+        System.out.println("Inventory is full. Cannot add " + itemToAdd.name + ".");
+    }
     //======================================================
     void removeItem(Item itemToRemove){
         for (int i = 0; i < inventory.length; i++) {
@@ -62,5 +73,13 @@ public class Inventory {
             }
         }
         return false;  // Return false if the item is not found in the inventory
+    }
+    boolean checkEmpty(){
+        for (Item item : inventory) {
+            if (item == null) {
+                return true; // Found an empty slot, so return true
+            }
+        }
+        return false; // No empty slots found, so return false
     }
 }

@@ -5,8 +5,9 @@ public class Item {
     double durability = 0.1;
     String name = "TestItem";
     String desc = "Just a regular item";
-    String equipSlot = "None";
+    EquipsTo equipSlot = EquipsTo.NONE;
 }
+
 class Tool extends Item {
     boolean isTwoHanded;
     int damage;
@@ -70,5 +71,4 @@ class Tool extends Item {
     }
     // Methods ================================================================
 }
-
 

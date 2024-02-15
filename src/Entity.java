@@ -9,6 +9,7 @@ abstract public class Entity {
     int distanceToPlayer;
     int abilityModifier = 1;
 }
+
 // Character Class ===========================================================
 class Character extends Entity{
     final int[] xpRequirements = {0, 180, 360, 540, 720, 900, 1080, 1260, 1440, 1620, 1800, 1980, 2160, 2340, 2520, 2700};
@@ -203,7 +204,7 @@ class Character extends Entity{
     }
 
     void gainHealth(int amount){
-        if (isAlive == true){
+        if (isAlive){
             System.out.println(entityName + " has healed some hit points!");
             currentHP += amount;
             if (currentHP > maxHP){
@@ -224,6 +225,7 @@ class Character extends Entity{
     }
 }
 class Player extends Character{
+    EquipmentSlots equippedItems = new EquipmentSlots();
 
     Player(String name, int level) {
         // Call the superclass constructor with the provided arguments
@@ -231,5 +233,14 @@ class Player extends Character{
         freeAbilityPoints = level * abilityModifier;
         maxHP += 2*level;
         currentHP = maxHP;
+    }
+    void equipItem(Item item) {
+        equippedItems.equipItem(item,inventory);
+    }
+    void unEquipItem(EquipsTo slot){
+        equippedItems.unEquipItem(slot,inventory);
+    }
+    public void displayEquippedItems() {
+        equippedItems.displayEquippedItems();
     }
 }
